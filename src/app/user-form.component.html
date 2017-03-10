@@ -1,0 +1,28 @@
+<div class="container" *ngIf="formVisible">
+    <h2>{{title}}</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" 
+				required
+				[(ngModel)]="model.name" name = "name">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" 
+				required
+				[(ngModel)]="model.age" name = "age">
+				
+      </div>
+	  <div class="form-group checkbox">
+        <label for="isAdmin">Is admin</label>
+        <input type="checkbox" class="form-control" id="isAdmin"
+				[(ngModel)]="model.isAdmin" name="isAdmin">
+				
+      </div>
+	  <div class="buttons-group">
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+	  <button (click)="onCancel();">cancel</button>
+	  </div>
+    </form>
+</div>

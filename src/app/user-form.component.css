@@ -1,0 +1,19 @@
+.container {padding: 20px; width: 300px; position:absolute; background-color: #0C4767;}
+
+.container{
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+h2 {color: #FF7F11; margin: 0 0 20px 0;}
+
+.form-group {margin: 5px 0px;}
+
+.form-group label {display: inline-block; width: 100%; font-weight: bold; color: #FF7F11;}
+.form-group input {padding: 5px;width:100%;}
+.checkbox label {width: auto;}
+.checkbox input {width: 20px; height: 20px;}
+
+.buttons-group{margin: 20px 0 0 0;}
+button { padding: 10px; font-size: 18px; font-weight: bold;}

@@ -1,0 +1,44 @@
+<div class="usersComponent">
+	<button (click) = "addTestData();">Добавить тестовые данные</button>
+	<button (click) = "eform.formVisible = false; uform.formVisible = true;">Добавить пользователя</button><br>
+	
+	<user-form [newUser] = "true" [title] = "'Новый пользователь'" (onSubmited) = "onSubmit($event);" #uform></user-form>
+	<user-form [newUser] = "false" [title] = "'Редактируем пользователя'" (onSubmited) = "onSubmit($event);" #eform></user-form>
+
+
+	<h2>Список пользователей</h2>
+
+		<div class = "search-group">
+		<label>Поиск: </label>
+		<input type="text"
+			   (keyup.enter)="onSearchEnter()"
+			   [(ngModel)] = "searchStr">
+		<button (click) = "getPage(1);" [disabled] = "searchStr == null || searchStr == ''">найти</button>
+		<button (click) = "searchStr = null; getPage(1);">очистить</button>
+	</div>
+
+	
+	<div class="pagination">
+	<ul>
+		<li class="label">Страницы: </li>
+		<li *ngFor="let pnum of arr(page.pagesCount).fill(1); let idx = index;" 
+			(click)= "onPageClick(idx+1)"
+			[ngClass] = "{'curent': idx+1 == page.curentPage}">{{idx+1}}</li>
+	</ul>
+	</div>
+	
+	<div class = "users">
+		<ul>
+				<li *ngFor="let user of page.entities; let odd = odd;" [ngClass]="{'isAdmin': user.isAdmin, 'odd': odd }">
+					<span class="userId"><label>id:</label> {{ user.id }}</span>
+					<span class="userInfo"> <label>Имя:</label> {{ user.name }}</span>
+					<span class="userAdded"> <label>Возраст:</label> {{ user.age }}<br>
+											 <label>Добавлен:</label> {{user.createdDate | date: "dd.MM.y"}}</span>
+					<span class ="delete lnk"
+					(click) = "delUser(user); $event.stopPropagation();">Удалить</span>
+					<span class = "edit lnk"
+					(click) = "uform.formVisible = false; eform.formVisible = true; eform.model = user; $event.stopPropagation();">редактировать</span>
+				</li>
+		</ul>
+	</div>
+</div>
